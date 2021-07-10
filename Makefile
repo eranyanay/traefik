@@ -111,6 +111,10 @@ build-image: binary
 	rm -rf static
 	docker build -t $(TRAEFIK_IMAGE) .
 
+build-image-arm: crossbinary-default
+	rm -rf static
+	docker build -t $(TRAEFIK_IMAGE)_arm -f arm.Dockerfile .
+
 ## Build a Docker Traefik image
 build-image-dirty: binary
 	docker build -t $(TRAEFIK_IMAGE) .

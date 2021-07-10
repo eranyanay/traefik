@@ -15,6 +15,7 @@ import (
 
 // Middleware holds the Middleware configuration.
 type Middleware struct {
+	CountryWhitelist  *CountryWhitelist  `json:"countryWhitelist,omitempty" toml:"countryWhitelist,omitempty" yaml:"countryWhitelist,omitempty" export:"true"`
 	AddPrefix         *AddPrefix         `json:"addPrefix,omitempty" toml:"addPrefix,omitempty" yaml:"addPrefix,omitempty" export:"true"`
 	StripPrefix       *StripPrefix       `json:"stripPrefix,omitempty" toml:"stripPrefix,omitempty" yaml:"stripPrefix,omitempty" export:"true"`
 	StripPrefixRegex  *StripPrefixRegex  `json:"stripPrefixRegex,omitempty" toml:"stripPrefixRegex,omitempty" yaml:"stripPrefixRegex,omitempty" export:"true"`
@@ -61,6 +62,15 @@ type ContentType struct {
 // AddPrefix holds the AddPrefix configuration.
 type AddPrefix struct {
 	Prefix string `json:"prefix,omitempty" toml:"prefix,omitempty" yaml:"prefix,omitempty" export:"true"`
+}
+
+// CountryWhitelist holds the CountryWhitelist configuration.
+type CountryWhitelist struct {
+	AllowedCountries []string `json:"allowedCountries,omitempty" toml:"allowedCountries,omitempty" yaml:"allowedCountries,omitempty" export:"true"`
+	DeniedCountries  []string `json:"deniedCountries,omitempty" toml:"deniedCountries,omitempty" yaml:"deniedCountries,omitempty" export:"true"`
+	AllowedRanges    []string `json:"allowedRanges,omitempty" toml:"allowedRanges,omitempty" yaml:"allowedRanges,omitempty" export:"true"`
+	DeniedRanges     []string `json:"deniedRanges,omitempty" toml:"deniedRanges,omitempty" yaml:"deniedRanges,omitempty" export:"true"`
+	DefaultAllow     bool     `json:"defaultAllow,omitempty" toml:"defaultAllow,omitempty" yaml:"defaultAllow,omitempty" export:"true"`
 }
 
 // +k8s:deepcopy-gen=true

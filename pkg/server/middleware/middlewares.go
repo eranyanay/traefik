@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/traefik/traefik/v2/pkg/middlewares/countrywhitelist"
 	"net/http"
 	"strings"
 
@@ -109,6 +110,13 @@ func (b *Builder) buildConstructor(ctx context.Context, middlewareName string) (
 
 	var middleware alice.Constructor
 	badConf := errors.New("cannot create middleware: multi-types middleware not supported, consider declaring two different pieces of middleware instead")
+
+	// countryWhitelist
+	if config.CountryWhitelist != nil {
+		middleware = func(next http.Handler) (http.Handler, error) {
+			return countrywhitelist.New(ctx, next, *config.CountryWhitelist, middlewareName)
+		}
+	}
 
 	// AddPrefix
 	if config.AddPrefix != nil {

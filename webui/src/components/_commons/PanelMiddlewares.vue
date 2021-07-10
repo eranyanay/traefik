@@ -721,6 +721,87 @@
           </div>
         </q-card-section>
 
+        <q-card-section v-if="middleware.countryWhitelist">
+          <div class="row items-start">
+            <div class="col-12">
+              <div class="text-subtitle2">Policy</div>
+            </div>
+
+            <div v-if="exData(middleware).allowedCountries" class="col-12">
+              <div class="flex">
+                <q-chip
+                  dense
+                  class="app-chip app-chip-accent">
+                  Allowed countries:
+                </q-chip>
+                <q-chip
+                  v-for="(country, key) in exData(middleware).allowedCountries" :key="key"
+                  dense
+                  class="app-chip app-chip-green">
+                  {{ country }}
+                </q-chip>
+              </div>
+            </div>
+            <div v-if="exData(middleware).deniedCountries" class="col-12">
+              <div class="flex">
+                <q-chip
+                  dense
+                  class="app-chip app-chip-accent">
+                  Denied countries:
+                </q-chip>
+                <q-chip
+                  v-for="(country, key) in exData(middleware).deniedCountries" :key="key"
+                  dense
+                  class="app-chip app-chip-green">
+                  {{ country }}
+                </q-chip>
+              </div>
+            </div>
+
+            <div v-if="exData(middleware).allowedRanges" class="col-12">
+              <div class="flex">
+                <q-chip
+                  dense
+                  class="app-chip app-chip-accent">
+                  Allowed ranges:
+                </q-chip>
+                <q-chip
+                  v-for="(range, key) in exData(middleware).allowedRanges" :key="key"
+                  dense
+                  class="app-chip app-chip-green">
+                  {{ range }}
+                </q-chip>
+              </div>
+            </div>
+            <div v-if="exData(middleware).deniedRanges" class="col-12">
+              <div class="flex">
+                <q-chip
+                  dense
+                  class="app-chip app-chip-accent">
+                  Denied ranges:
+                </q-chip>
+                <q-chip
+                  v-for="(range, key) in exData(middleware).deniedRanges" :key="key"
+                  dense
+                  class="app-chip app-chip-green">
+                  {{ range }}
+                </q-chip>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="text-subtitle2">Default behavior</div>
+            </div>
+
+            <div v-if="exData(middleware).defaultAllow === true" class="col-12">
+              Accept unmatched connections
+            </div>
+            <div v-else class="col-12">
+              Deny unmatched connections
+            </div>
+          </div>
+        </q-card-section>
+
         <!-- EXTRA FIELDS FROM MIDDLEWARES - [rateLimit] - average && burst-->
         <q-card-section v-if="middleware.rateLimit">
           <div class="row items-start no-wrap">

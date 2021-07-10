@@ -219,6 +219,7 @@ func (p *Provider) loadConfigurationFromCRD(ctx context.Context, client Client) 
 		}
 
 		conf.HTTP.Middlewares[id] = &dynamic.Middleware{
+			CountryWhitelist:  middleware.Spec.CountryWhitelist,
 			AddPrefix:         middleware.Spec.AddPrefix,
 			StripPrefix:       middleware.Spec.StripPrefix,
 			StripPrefixRegex:  middleware.Spec.StripPrefixRegex,

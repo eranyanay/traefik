@@ -20,6 +20,7 @@ type Middleware struct {
 
 // MiddlewareSpec holds the Middleware configuration.
 type MiddlewareSpec struct {
+	CountryWhitelist  *dynamic.CountryWhitelist     `json:"countryWhitelist,omitempty"`
 	AddPrefix         *dynamic.AddPrefix            `json:"addPrefix,omitempty"`
 	StripPrefix       *dynamic.StripPrefix          `json:"stripPrefix,omitempty"`
 	StripPrefixRegex  *dynamic.StripPrefixRegex     `json:"stripPrefixRegex,omitempty"`
